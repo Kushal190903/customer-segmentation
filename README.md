@@ -1,3 +1,5 @@
+<p><strong>NOTE:</strong> check the streamlit <a href='https://customer-segmentation-kushal.streamlit.app/'>app</a></p>
+
 <h3>Files</h3>
 <dl>
   <dt>analysis.ipynb</dt>
