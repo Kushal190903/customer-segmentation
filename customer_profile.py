@@ -62,29 +62,7 @@ for i, label in factorlabels.items():
 st.subheader("Customer Data")
 customerdataframes = calculate_kpis(customerdataframes)
 st.write(customerdataframes)
-# Adding new customer
-st.subheader("Add a New Customer")
-new_customer = {}
-columns = ['CUST_ID', 'BALANCE', 'BALANCE_FREQUENCY', 'PURCHASES',
-       'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE',
-       'PURCHASES_FREQUENCY', 'ONEOFF_PURCHASES_FREQUENCY',
-       'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_FREQUENCY',
-       'CASH_ADVANCE_TRX', 'PURCHASES_TRX', 'CREDIT_LIMIT', 'PAYMENTS',
-       'MINIMUM_PAYMENTS', 'PRC_FULL_PAYMENT', 'TENURE']
-new_customer['CUST_ID']=st.text_input('CUST_ID')
-for col in columns[1:]:
-    new_customer[col] = st.number_input(f"Enter {col}", min_value=0.0, step=0.1)
 
-if st.button("Add and Analyze New Customer"):
-    new_customer_df = pd.DataFrame([new_customer])
-    new_customer_df = calculate_kpis(new_customer_df)
-    
-    cluster = predict_cluster(new_customer_df.drop(columns=['CUST_ID'], errors='ignore'))
-    st.write(f"The new customer fits into **Cluster {cluster}: {clusterlabels[cluster]}**")
-
-    st.subheader("Customer KPIs")
-    st.write(new_customer_df[['monthly_average_purchase', 'monthly_average_payments', 'balance_to_creditlimit_ratio']])
-    customerdataframes=pd.concat([customerdataframes,new_customer_df])
 # Check existing customer profile
 st.subheader("Check Customer Profile")
 customer_id = st.text_input("Enter Customer ID")
@@ -110,3 +88,27 @@ if st.button("Fetch Profile"):
         st.write(kpi_Data)
     else:
         st.error("Customer ID not found in the dataset.")
+
+# Adding new customer
+st.subheader("Add a New Customer")
+new_customer = {}
+columns = ['CUST_ID', 'BALANCE', 'BALANCE_FREQUENCY', 'PURCHASES',
+       'ONEOFF_PURCHASES', 'INSTALLMENTS_PURCHASES', 'CASH_ADVANCE',
+       'PURCHASES_FREQUENCY', 'ONEOFF_PURCHASES_FREQUENCY',
+       'PURCHASES_INSTALLMENTS_FREQUENCY', 'CASH_ADVANCE_FREQUENCY',
+       'CASH_ADVANCE_TRX', 'PURCHASES_TRX', 'CREDIT_LIMIT', 'PAYMENTS',
+       'MINIMUM_PAYMENTS', 'PRC_FULL_PAYMENT', 'TENURE']
+new_customer['CUST_ID']=st.text_input('CUST_ID')
+for col in columns[1:]:
+    new_customer[col] = st.number_input(f"Enter {col}", min_value=0.0, step=0.1)
+
+if st.button("Add New Customer(slight debug needed)"):
+    new_customer_df = pd.DataFrame([new_customer])
+    new_customer_df = calculate_kpis(new_customer_df)
+    
+    cluster = predict_cluster(new_customer_df.drop(columns=['CUST_ID'], errors='ignore'))
+    st.write(f"The new customer fits into **Cluster {cluster}: {clusterlabels[cluster]}**")
+
+    st.subheader("Customer KPIs")
+    st.write(new_customer_df[['monthly_average_purchase', 'monthly_average_payments', 'balance_to_creditlimit_ratio']])
+    customerdataframes=pd.concat([customerdataframes,new_customer_df])
