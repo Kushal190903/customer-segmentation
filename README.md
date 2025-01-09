@@ -2,7 +2,7 @@
 <dl>
   <dt>analysis.ipynb</dt>
   <dd>Carried out the data analysis such as factor analysis, clustering, visualization, etc.</dd>
-  <dt>customer_profile.py</dt>
+  <dt>app.py</dt>
   <dd>Streamlit app for checking the customer profiles, adding new customers, etc.</dd>
   <dt>fa.pkl</dt>
   <dd>Factor analysis object created in analysis.ipynb.</dd>
