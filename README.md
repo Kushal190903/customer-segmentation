@@ -1,3 +1,17 @@
+
+<h3>Files</h3>
+<dl>
+<dt>analysis.ipynb</dt>
+<dd>carried out the data analysis such as factor analysis,clustering,visualisation etc.</dd>
+<dt>customer_profile.py</dt>
+<dd>streamlit app for checking the customer profiles, adding new customers etc.</dd>
+<dt>fa.pkl</dt>
+<dd>factor analysis object created in analysis.ipynb</dd>
+<dt>scaler.ipynb</dt>
+<dd>standard scaler object</dd>
+<dt>significantfeatures.pkl</dt>
+<dd>list all the factors and the attributes they have high positive or negative correlation with</dd>
+</dl>
 <h4>CLUSTER LABELS (check images folder for better understanding)</h4>
 
 Cluster 0: Low Factor 4
